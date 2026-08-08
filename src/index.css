@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #4f46e5;
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --bg-deep: #0a0b10;
+  --bg-sidebar: rgba(18, 22, 33, 0.5);
+  --bg-chat: #0f111a;
+  --border-glow: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  background: var(--bg-deep);
+  color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Họa tiết lưới chấm mờ (Dotted Grid Background) cho khung chat */
+.chat-bg-pattern {
+  background-color: #080f1a; /* Màu tối xanh đen sẫm */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Hiệu ứng viền Gradient chạy vòng tròn đa màu (Rotating Gradient Border) */
+.gradient-border-wrapper {
+  position: relative;
+  border-radius: 9999px;
+  padding: 3px; /* Độ dày của viền chạy */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradient-border-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 0deg,
+    #ff007f, /* Hồng */
+    #7f00ff, /* Tím */
+    #00f0ff, /* Lam */
+    #00ff7f, /* Lục */
+    #ffea00, /* Vàng */
+    #ff007f  /* Hồng */
+  );
+  animation: rotate-gradient 6s linear infinite;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+.gradient-border-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #06070a; /* Màu nền cực tối để tăng chiều sâu lõm */
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 20px 20px;
+  
+  /* Hiệu ứng 3D lõm sâu xuống (Inset Sunken 3D Shadow) */
+  box-shadow: 
+    inset 0 16px 32px rgba(0, 0, 0, 0.95),      /* Bóng đen cực mạnh từ mép trên đổ xuống tạo hố sâu */
+    inset 0 -16px 32px rgba(255, 255, 255, 0.02), /* Ánh sáng phản chiếu yếu từ viền dưới hắt lên */
+    inset 0 0 20px rgba(99, 102, 241, 0.05);     /* Ánh sáng glow xanh mờ cực kỳ huyền ảo từ trong hố */
+}
+
+@keyframes rotate-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom Scrollbar siêu mỏng và hiện đại cho toàn hệ thống */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Tùy chỉnh thông báo Toast của react-toastify trên di động (Bám sát góc trên phải) */
+@media (max-width: 640px) {
+  .Toastify__toast-container {
+    width: auto !important;
+    max-width: 280px !important;
+    left: auto !important;
+    right: 12px !important;
+    top: 12px !important;
+    transform: none !important;
+  }
+  .Toastify__toast {
+    min-height: 44px !important;
+    font-size: 12.5px !important;
+    padding: 6px 12px !important;
+    border-radius: 10px !important;
+    margin-bottom: 6px !important;
+    background: rgba(24, 24, 27, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
+  }
+  .Toastify__toast-icon {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 6px !important;
+  }
+}
